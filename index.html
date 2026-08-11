@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Hub</title>
+<style>
+  html,body{
+    margin:0; padding:0; min-height:100%;
+    background:#150a30; /* цвет космоса по краям */
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hub{ position:relative; width:100%; max-width:1400px; }
+  .hub > img{ width:100%; display:block; }
+
+  /* прозрачные кликабельные зоны поверх карточек */
+  .slot{
+    position:absolute; border-radius:28px;
+    transition:box-shadow .2s, background .2s, transform .2s;
+  }
+  .slot:hover, .slot:focus{
+    background:rgba(255,255,255,.08);
+    box-shadow:0 0 0 4px rgba(120,220,255,.8), 0 0 35px rgba(120,220,255,.6);
+    transform:scale(1.02);
+  }
+  /* координаты в % от картинки — при необходимости подправь */
+  .slot-1{ left:5.5%;  top:35%; width:27.8%; height:57%; } /* Snake   -> game1 */
+  .slot-2{ left:36.1%; top:35%; width:27.8%; height:57%; } /* Zombi   -> game2 */
+  .slot-3{ left:66.9%; top:35%; width:27.8%; height:57%; } /* Bubbles -> game3 */
+</style>
+</head>
+<body>
+  <div class="hub">
+    <img src="bg.png" alt="Game Hub — выбери игру">
+
+    <a class="slot slot-1" href="game1.html" title="Snake
