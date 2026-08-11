@@ -5,35 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Hub</title>
 <style>
+  /* ================= СТРАНИЦА ================= */
   html,body{
-    margin:0; height:100%; overflow:hidden;          /* без прокрутки */
-    background:#150a30;
-    display:flex; align-items:center; justify-content:center;
+    margin:0;             /* убираем стандартные отступы */
+    height:100%;          /* страница = высота экрана */
+    overflow:hidden;      /* НЕТ полосы прокрутки — экран не двигается */
+    background:#150a30;   /* цвет космоса по краям */
+    display:flex; align-items:center; justify-content:center; /* хаб по центру */
   }
 
-  /* 1.75 = ширина bg.png / высота bg.png */
+  /* ================= КОНТЕЙНЕР С КАРТИНКОЙ ================= */
+  /* 1.75 = ширина bg.png ÷ высота bg.png (2464/1408 ≈ 1.75).
+     Благодаря этому картинка ВСЕГДА целиком влезает на экран.
+     Если заменишь фон — пересчитай это число. */
   .hub{ position:relative; width:min(100%, 1400px, calc(100vh * 1.75)); }
-  .hub > img{ width:100%; display:block; }
+  .hub > img{ width:100%; display:block; } /* картинка на всю ширину */
 
-  /* зона = вся карточка, при наведении светится ЦЕЛИКОМ */
+  /* ================= КЛИКАБЕЛЬНЫЕ ЗОНЫ ================= */
+  /* Прозрачные ссылки ПОВЕРХ карточек. В обычном состоянии
+     они НЕВИДИМЫЕ: без рамки и фона. */
   .slot{
     position:absolute; display:block; border-radius:28px;
     transition:box-shadow .2s, background .2s, transform .2s;
+    /* здесь НЕ должно быть box-shadow и background */
   }
+
+  /* Подсветка появляется ТОЛЬКО при наведении (или фокусе) */
   .slot:hover, .slot:focus{
     background:rgba(255,255,255,.08);
     box-shadow:0 0 0 4px rgba(120,220,255,.8), 0 0 35px rgba(120,220,255,.6);
     transform:scale(1.02);
   }
 
-  .slot-1{ left:8%;    top:26%; width:26.5%; height:44%; } /* Snake   */
-  .slot-2{ left:36.3%; top:26%; width:26.5%; height:44%; } /* Zombie  */
-  .slot-3{ left:65.2%; top:26%; width:26.5%; height:44%; } /* Bubbles */
+  /* ============ КООРДИНАТЫ ЗОН (в % от картинки) ============
+     left — отступ слева, top — отступ сверху,
+     width — ширина зоны, height — высота зоны.
+     Вниз = увеличить top; вправо = увеличить left;
+     растянуть вниз = увеличить height; шире = увеличить width.
+     ДЛЯ НАСТРОЙКИ: временно добавь в .slot{ } строку
+     background:rgba(255,0,0,.25); — зоны станут видимыми. Настроила — удали. */
+  .slot-1{ left:8%;    top:26%; width:26.5%; height:44%; } /* Snake   -> game1.html */
+  .slot-2{ left:36.3%; top:26%; width:26.5%; height:44%; } /* Zombie  -> game2.html */
+  .slot-3{ left:65.2%; top:26%; width:26.5%; height:44%; } /* Bubbles -> game3.html */
 </style>
 </head>
 <body>
+  <!-- Хаб: картинка фона + 3 прозрачные ссылки поверх карточек -->
   <div class="hub">
     <img src="bg.png" alt="Game Hub — выбери игру">
+
+    <!-- Каждая <a> = одна карточка. Клик открывает свою игру -->
     <a class="slot slot-1" href="game1.html" title="Snake · Present Simple (-S)"></a>
     <a class="slot slot-2" href="game2.html" title="Zombie · Phrasal Verbs"></a>
     <a class="slot slot-3" href="game3.html" title="Grammar Bubbles · There was / There were"></a>
