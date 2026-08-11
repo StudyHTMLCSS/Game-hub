@@ -6,26 +6,25 @@
 <title>Game Hub</title>
 <style>
   html,body{
-    margin:0; height:100%; overflow:hidden;      /* без прокрутки */
+    margin:0; height:100%; overflow:hidden;          /* без прокрутки */
     background:#150a30;
     display:flex; align-items:center; justify-content:center;
   }
 
-  /* 1.75 = ширина bg.png / высота bg.png. У другого фона — пересчитай */
+  /* 1.75 = ширина bg.png / высота bg.png */
   .hub{ position:relative; width:min(100%, 1400px, calc(100vh * 1.75)); }
   .hub > img{ width:100%; display:block; }
 
-  /* зона клика = вся карточка */
-  .slot{ position:absolute; display:block; }
-
-  /* светящаяся рамка ВОКРУГ КНОПКИ PLAY, появляется при наведении */
-  .slot::after{
-    content:""; position:absolute; opacity:0; transition:opacity .15s;
-    left:23%; right:23%; bottom:5%; height:15%;   /* положение рамки */
-    border-radius:999px;
-    box-shadow:0 0 0 4px rgba(90,220,255,.95), 0 0 30px rgba(90,220,255,.7);
+  /* зона = вся карточка, при наведении светится ЦЕЛИКОМ */
+  .slot{
+    position:absolute; display:block; border-radius:28px;
+    transition:box-shadow .2s, background .2s, transform .2s;
   }
-  .slot:hover::after, .slot:focus::after{ opacity:1; }
+  .slot:hover, .slot:focus{
+    background:rgba(255,255,255,.08);
+    box-shadow:0 0 0 4px rgba(120,220,255,.8), 0 0 35px rgba(120,220,255,.6);
+    transform:scale(1.02);
+  }
 
   .slot-1{ left:8%;    top:26%; width:26.5%; height:44%; } /* Snake   */
   .slot-2{ left:36.3%; top:26%; width:26.5%; height:44%; } /* Zombie  */
